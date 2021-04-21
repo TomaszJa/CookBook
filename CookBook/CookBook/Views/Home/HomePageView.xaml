@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookBook.Views.Home.HomePageView"
+             Title="Cook Book">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Margin="5" RowSpacing="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="AddRecipe"
+                        Text="Add Recipe"
+                        Grid.Row="1" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"></Button>
+                <Button x:Name="BrowseRecipies"
+                        Text="Browse Recipies"
+                        Grid.Row="2" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"></Button>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

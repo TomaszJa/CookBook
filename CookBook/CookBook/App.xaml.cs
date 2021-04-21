@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CookBook.Views.Home;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace CookBook
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new HomePageView());
         }
 
         protected override void OnStart()
