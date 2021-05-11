@@ -15,13 +15,15 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="AddRecipe"
+                        Command="{Binding AddRecipyCommand}"
                         Text="Add Recipe"
-                        Grid.Row="1" 
+                        Grid.Row="0" 
                         Grid.Column="0"
                         Grid.ColumnSpan="2"></Button>
                 <Button x:Name="BrowseRecipies"
+                        Command="{Binding BrowseRecipiesCommand}"
                         Text="Browse Recipies"
-                        Grid.Row="2" 
+                        Grid.Row="1" 
                         Grid.Column="0"
                         Grid.ColumnSpan="2"></Button>
             </Grid>

@@ -9,5 +9,8 @@ namespace CookBook.Utility
     public class ViewNames
     {
         public const string HomePageView = "HomePageView";
+        public const string RecipiesTabbedView = "RecipiesTabbedView";
+        public const string RecipiesCathegoryView = "RecipiesCathegoryView";
+        public const string RecipiesListView = "RecipiesListView";
     }
 }
