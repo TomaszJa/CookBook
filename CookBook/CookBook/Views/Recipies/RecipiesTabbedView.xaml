@@ -2,8 +2,10 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:recipies="clr-namespace:CookBook.Views.Recipies"
-             x:Class="CookBook.Views.Recipies.RecipiesTabbedView">
+             x:Class="CookBook.Views.Recipies.RecipiesTabbedView"
+            Title="{Binding SelectedRecipe.Name}">
+    
   <!--Pages can be added as references or inline-->
-  <recipies:RecipeIngredientsView Title="Ingredients" />
-  <recipies:RecipeDetailsView Title="Details" />
+    <recipies:RecipeIngredientsView Title="Ingredients"/>
+    <recipies:RecipeDetailsView Title="Details"/>
 </TabbedPage>

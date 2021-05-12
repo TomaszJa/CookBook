@@ -49,6 +49,8 @@ namespace CookBook.ViewModels.Recipies
 
         private void OnRecipeSelectedCommand(Recipe recipe)
         {
+            ViewModelLocator.RecipeDetailsViewModel.Initialize(recipe);
+            ViewModelLocator.RecipeIngredientsViewModel.Initialize(recipe);
             _navigationService.NavigateTo(ViewNames.RecipiesTabbedView, recipe);
         }
 

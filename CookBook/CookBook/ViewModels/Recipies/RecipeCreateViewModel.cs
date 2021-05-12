@@ -1,5 +1,6 @@
 ﻿using CookBook.Data;
 using CookBook.Models;
+using CookBook.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,7 @@ namespace CookBook.ViewModels.Recipies
             "Breakfast", "Starter", "Soup", "Main Course", "Dessert", "Other"
         };
         private string _chosenValue;
+        private INavigationService _navigationService;
 
         public Recipe RecipeToCreate
         {
@@ -48,8 +50,10 @@ namespace CookBook.ViewModels.Recipies
 
         public ICommand AddCommand { get; }
 
-        public RecipeCreateViewModel()
+        public RecipeCreateViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
+
             RecipeToCreate = new Recipe()
             { 
                 Type = RecipeType.Other
@@ -67,6 +71,7 @@ namespace CookBook.ViewModels.Recipies
                 {
                     CookBookDatabase database = await CookBookDatabase.Instance;
                     await database.SaveItemAsync(RecipeToCreate);
+                    _navigationService.GoBack();
                 }
             }
             catch

@@ -19,17 +19,17 @@ namespace CookBook.Utility
             = new HomePageViewModel(App.NavigationService);
 
         public static RecipeCreateViewModel RecipeCreateViewModel { get; set; }
-            = new RecipeCreateViewModel();
+            = new RecipeCreateViewModel(App.NavigationService);
         public static RecipeDetailsViewModel RecipeDetailsViewModel { get; set; }
             = new RecipeDetailsViewModel();
         public static RecipeIngredientsViewModel RecipeIngredientsViewModel { get; set; }
             = new RecipeIngredientsViewModel();
-        public static RecipiesListViewModel RecipiesListViewModel { get; set; }
-            = new RecipiesListViewModel(App.NavigationService);
         public static RecipiesCathegoryViewModel RecipiesCathegoryViewModel { get; set; }
             = new RecipiesCathegoryViewModel(App.NavigationService);
         public static RecipiesTabbedViewModel RecipiesTabbedViewModel { get; set; }
             = new RecipiesTabbedViewModel();
+        public static RecipiesListViewModel RecipiesListViewModel { get; set; }
+            = new RecipiesListViewModel(App.NavigationService);
 
         public static ShoppingListViewModel ShoppingListViewModel { get; set; }
             = new ShoppingListViewModel();
