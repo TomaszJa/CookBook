@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using Xamarin.Forms;
 
-namespace CookBook.Utility
+namespace CookBook.Converter
 {
     // Klasa, która pozwala na konwersję otrzymanej wartości na obiekt przekazany przez
     // event args

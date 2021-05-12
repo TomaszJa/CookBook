@@ -39,29 +39,44 @@ namespace CookBook.ViewModels.Recipies
             _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Breakfasts");
         }
 
-        private void OnStartersCommand()
+        private async void OnStartersCommand()
         {
-            _navigationService.NavigateTo(ViewNames.RecipiesListView, "Starters");
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.Starter);
+
+            _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Starters");
         }
 
-        private void OnSoupsCommand()
+        private async void OnSoupsCommand()
         {
-            _navigationService.NavigateTo(ViewNames.RecipiesListView, "Soups");
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.Soup);
+
+            _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Soups");
         }
 
-        private void OnMainCoursesCommand()
+        private async void OnMainCoursesCommand()
         {
-            _navigationService.NavigateTo(ViewNames.RecipiesListView, "MainCoursers");
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.MainCourse);
+
+            _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "MainCoursers");
         }
 
-        private void OnDessertsCommand()
+        private async void OnDessertsCommand()
         {
-            _navigationService.NavigateTo(ViewNames.RecipiesListView, "Desserts");
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.Dessert);
+
+            _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Desserts");
         }
 
-        private void OnOthersCommand()
+        private async void OnOthersCommand()
         {
-            _navigationService.NavigateTo(ViewNames.RecipiesListView, "Others");
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.Other);
+
+            _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Others");
         }
 
         public override void Initialize(object parameter)

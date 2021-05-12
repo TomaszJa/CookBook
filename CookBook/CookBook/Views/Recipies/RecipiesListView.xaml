@@ -9,5 +9,32 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        <ListView HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding Recipies}"
+                  x:Name="RecipiesList" CachingStrategy="RecycleElement">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding RecipeSelectedCommand}"
+                    EventArgsConverter="{StaticResource LocalItemTappedConverter}">
+
+                </behaviors:EventToCommandBehavior>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HeightRequest="100" Margin="5" RowSpacing="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Margin="3"></Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </ContentPage>

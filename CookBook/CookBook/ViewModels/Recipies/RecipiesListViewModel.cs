@@ -1,9 +1,12 @@
 ﻿using CookBook.Models;
 using CookBook.Services.Interfaces;
+using CookBook.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace CookBook.ViewModels.Recipies
 {
@@ -13,6 +16,8 @@ namespace CookBook.ViewModels.Recipies
         private ObservableCollection<Recipe> _recipies;
 
         private INavigationService _navigationService;
+
+        public ICommand RecipeSelectedCommand { get; }
 
         public string Title
         {
@@ -39,6 +44,12 @@ namespace CookBook.ViewModels.Recipies
             Recipies = new ObservableCollection<Recipe>();
             _navigationService = navigationService;
 
+            RecipeSelectedCommand = new Command<Recipe>(OnRecipeSelectedCommand);
+        }
+
+        private void OnRecipeSelectedCommand(Recipe recipe)
+        {
+            _navigationService.NavigateTo(ViewNames.RecipiesTabbedView, recipe);
         }
 
         public override void Initialize(object parameter)
@@ -48,6 +59,7 @@ namespace CookBook.ViewModels.Recipies
 
         public override void Initialize(object parameter, List<Recipe> recipies)
         {
+            Recipies = new ObservableCollection<Recipe>();
             Title = parameter as string;
 
             foreach ( var recipe in recipies )
