@@ -12,5 +12,9 @@ namespace CookBook.Utility
         public const string RecipiesTabbedView = "RecipiesTabbedView";
         public const string RecipiesCathegoryView = "RecipiesCathegoryView";
         public const string RecipiesListView = "RecipiesListView";
+        public const string RecipeDetailsView = "RecipeDetailsView";
+        public const string RecipeIngredientsView = "RecipeIngredientsView";
+        public const string RecipeCreateView = "RecipeCreateView";
+        public const string ShoppingListView = "ShoppingListView";
     }
 }

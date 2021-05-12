@@ -2,6 +2,7 @@
 using CookBook.Utility;
 using CookBook.Views.Home;
 using CookBook.Views.Recipies;
+using CookBook.Views.ShoppingList;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,6 +23,11 @@ namespace CookBook
             NavigationService.Configure(ViewNames.RecipiesTabbedView, typeof(RecipiesTabbedView));
             NavigationService.Configure(ViewNames.RecipiesListView, typeof(RecipiesListView));
             NavigationService.Configure(ViewNames.RecipiesCathegoryView, typeof(RecipiesCathegoryView));
+            NavigationService.Configure(ViewNames.RecipeCreateView, typeof(RecipeCreateView));
+            NavigationService.Configure(ViewNames.RecipeIngredientsView, typeof(RecipeIngredientsView));
+            NavigationService.Configure(ViewNames.RecipeDetailsView, typeof(RecipeDetailsView));
+            NavigationService.Configure(ViewNames.ShoppingListView, typeof(ShoppingListView));
+
 
             MainPage = new NavigationPage(new HomePageView());
         }

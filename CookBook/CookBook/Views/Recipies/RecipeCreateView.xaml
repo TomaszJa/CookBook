@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookBook.Views.Recipies.RecipeCreateView"
+             Title="Create Recipe">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Name" 
+                       Grid.Row="0" ></Label>
+                <Entry Grid.Row="1"
+                       Text="{Binding RecipeToCreate.Name, Mode=TwoWay}"
+                       MaxLength="100"
+                       ClearButtonVisibility="WhileEditing"
+                       HorizontalTextAlignment="Center" 
+                       VerticalOptions="Center"></Entry>
+                <Label Text="Ingredients" 
+                       Grid.Row="2" ></Label>
+                <Editor Grid.Row="3"
+                        Text="{Binding RecipeToCreate.Ingredients, Mode=TwoWay}"
+                        AutoSize="TextChanges"
+                       VerticalOptions="Center"></Editor>
+                <Label Text="Description" 
+                       Grid.Row="4" ></Label>
+                <Editor Grid.Row="5"
+                        Text="{Binding RecipeToCreate.Description, Mode=TwoWay}"
+                        AutoSize="TextChanges"
+                       VerticalOptions="Center"></Editor>
+                <Label Text="Preparation Time (in minutes)" 
+                       Grid.Row="6" ></Label>
+                <Entry Grid.Row="7"
+                       Text="{Binding RecipeToCreate.PreparationTime, Mode=TwoWay}"
+                        Placeholder="time in minutes"
+                        MaxLength="3"
+                        ClearButtonVisibility="WhileEditing"
+                        Keyboard="Numeric"></Entry>
+                <Label Text="Link to Recipe" 
+                       Grid.Row="8" ></Label>
+                <Entry Grid.Row="9"
+                       Text="{Binding RecipeToCreate.StringURL, Mode=TwoWay}"
+                       ClearButtonVisibility="WhileEditing"
+                       HorizontalTextAlignment="Center" 
+                       VerticalOptions="Center"></Entry>
+                <Label Text="Type" 
+                       Grid.Row="10" ></Label>
+                <Picker Grid.Row="11"
+                       Title="{Binding RecipeToCreate.Type}"
+                        ItemsSource="{Binding Types}"
+                        SelectedItem="{Binding ChosenValue, Mode=TwoWay}"
+                       HorizontalTextAlignment="Center" 
+                       VerticalOptions="Center"></Picker>
+                <Button x:Name="AddRecipeButton"
+                        Command="{Binding AddCommand}"
+                        Text="Add Recipe" 
+                        Grid.Row="12" ></Button>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

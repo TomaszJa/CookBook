@@ -16,6 +16,7 @@ namespace CookBook.ViewModels.Home
 
         public ICommand AddRecipyCommand { get; }
         public ICommand BrowseRecipiesCommand { get; }
+        public ICommand ShoppingListCommand { get; }
 
         public HomePageViewModel(INavigationService navigationService)
         {
@@ -23,6 +24,12 @@ namespace CookBook.ViewModels.Home
 
             AddRecipyCommand = new Command(OnAddRecipyCommand);
             BrowseRecipiesCommand = new Command(OnBrowseRecipiesCommand);
+            ShoppingListCommand = new Command(OnShoppingListCommand);
+        }
+
+        private void OnShoppingListCommand()
+        {
+            _navigationService.NavigateTo(ViewNames.ShoppingListView);
         }
 
         private void OnBrowseRecipiesCommand()
@@ -30,16 +37,9 @@ namespace CookBook.ViewModels.Home
             _navigationService.NavigateTo(ViewNames.RecipiesCathegoryView);
         }
 
-        private async void OnAddRecipyCommand()
+        private void OnAddRecipyCommand()
         {
-            var recipe = new Recipe
-            {
-                Name = "Kanapka",
-                Type = RecipeType.Breakfast
-            };
-
-            CookBookDatabase database = await CookBookDatabase.Instance;
-            await database.SaveItemAsync(recipe);
+            _navigationService.NavigateTo(ViewNames.RecipeCreateView);
         }
     }
 }
