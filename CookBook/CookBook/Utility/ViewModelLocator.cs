@@ -25,7 +25,7 @@ namespace CookBook.Utility
         public static RecipeDetailsViewModel RecipeDetailsViewModel { get; set; }
             = new RecipeDetailsViewModel(App.NavigationService, App.DialogService);
         public static RecipeIngredientsViewModel RecipeIngredientsViewModel { get; set; }
-            = new RecipeIngredientsViewModel();
+            = new RecipeIngredientsViewModel(App.DialogService);
         public static RecipiesCathegoryViewModel RecipiesCathegoryViewModel { get; set; }
             = new RecipiesCathegoryViewModel(App.NavigationService);
         public static RecipiesTabbedViewModel RecipiesTabbedViewModel { get; set; }

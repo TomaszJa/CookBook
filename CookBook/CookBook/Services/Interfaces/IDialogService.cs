@@ -11,5 +11,6 @@ namespace CookBook.Services.Interfaces
         Task ShowDialog(string message, string title, string buttonLabel);
         Task<bool> ConfirmDialog(string message, string title, string optionOk, string optionNo);
         Task<string> ActionSheet(string message, string cancel, string delete, string[] options);
+        Task<Acr.UserDialogs.PromptResult> InputDialog(string message, string title, string optionOk, string optionNo);
     }
 }

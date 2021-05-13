@@ -8,6 +8,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Button x:Name="ClearShoppingListButton"
                         Command="{Binding ClearShoppingListCommand}"
@@ -40,5 +41,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button x:Name="AddItemButton"
+                        Command="{Binding AddItemCommand}"
+                        Text="Add Item" 
+                        Grid.Row="2" ></Button>
     </Grid>
 </ContentPage>

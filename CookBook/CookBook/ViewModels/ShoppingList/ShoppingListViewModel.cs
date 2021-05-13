@@ -27,6 +27,7 @@ namespace CookBook.ViewModels.ShoppingList
 
         public ICommand ClearShoppingListCommand { get; }
         public ICommand ItemSelectedCommand { get; }
+        public ICommand AddItemCommand { get; }
 
         public ShoppingListViewModel(IDialogService dialogService)
         {
@@ -36,6 +37,25 @@ namespace CookBook.ViewModels.ShoppingList
             ClearShoppingListCommand = new Command(OnClearShoppingListCommand);
 
             ItemSelectedCommand = new Command<ShoppingListItem>(OnItemSelectedCommand);
+            AddItemCommand = new Command(OnAddItemCommand);
+        }
+
+        private async void OnAddItemCommand()
+        {
+            var input = await _dialogService.InputDialog("Provide Shopping Item", "Add Item", "Confirm", "Cancel");
+
+            if (input.Ok)
+            {
+                var newItem = new ShoppingListItem()
+                {
+                    Name = input.Value
+                };
+
+                CookBookDatabase database = await CookBookDatabase.Instance;
+                await database.SaveShoppingListItemAsync(newItem);
+
+                ShoppingListItems.Add(newItem);
+            }
         }
 
         private async void OnItemSelectedCommand(ShoppingListItem item)
@@ -66,9 +86,14 @@ namespace CookBook.ViewModels.ShoppingList
 
         private async void OnClearShoppingListCommand()
         {
-            CookBookDatabase database = await CookBookDatabase.Instance;
-            await database.ClearShoppingListAsync();
-            ShoppingListItems.Clear();
+            var result = await _dialogService.ConfirmDialog("Are you sure you want to clear the Shopping List?", "Clear List", "Yes", "No");
+
+            if (result)
+            {
+                CookBookDatabase database = await CookBookDatabase.Instance;
+                await database.ClearShoppingListAsync();
+                ShoppingListItems.Clear();
+            }
         }
 
         public override void Initialize(object parameter, List<ShoppingListItem> shoppingListItems)

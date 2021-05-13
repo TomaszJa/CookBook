@@ -1,5 +1,6 @@
 ﻿using CookBook.Data;
 using CookBook.Models;
+using CookBook.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,8 @@ namespace CookBook.ViewModels.Recipies
     public class RecipeIngredientsViewModel : BaseViewModel
     {
         private Recipe _recipe;
+        private IDialogService _dialogService;
+
         public Recipe RecipeToView
         {
             get { return _recipe; }
@@ -34,8 +37,10 @@ namespace CookBook.ViewModels.Recipies
 
         public ICommand AddToShoppingListCommand { get; }
 
-        public RecipeIngredientsViewModel()
+        public RecipeIngredientsViewModel(IDialogService dialogService)
         {
+            _dialogService = dialogService;
+
             RecipeToView = new Recipe();
             Ingredients = new List<string>();
 
@@ -53,6 +58,7 @@ namespace CookBook.ViewModels.Recipies
                 };
                 await database.SaveShoppingListItemAsync(shoppingListItem);
             }
+            await _dialogService.ShowDialog("Ingredients added to shopping list!", "Success", "Ok");
         }
 
         public override void Initialize(object parameter)

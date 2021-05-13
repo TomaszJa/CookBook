@@ -20,6 +20,11 @@ namespace CookBook.Services.ServiceClasses
             return UserDialogs.Instance.ConfirmAsync(message, title, optionOk, optionNo);
         }
 
+        public Task<Acr.UserDialogs.PromptResult> InputDialog(string message, string title, string optionOk, string optionNo)
+        {
+            return UserDialogs.Instance.PromptAsync(message, title, optionOk, optionNo);
+        }
+
         public Task ShowDialog(string message, string title, string buttonLabel)
         {
             return UserDialogs.Instance.AlertAsync(message, title, buttonLabel);
