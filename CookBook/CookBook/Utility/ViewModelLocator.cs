@@ -20,8 +20,10 @@ namespace CookBook.Utility
 
         public static RecipeCreateViewModel RecipeCreateViewModel { get; set; }
             = new RecipeCreateViewModel(App.NavigationService);
+        public static RecipeEditViewModel RecipeEditViewModel { get; set; }
+            = new RecipeEditViewModel(App.NavigationService);
         public static RecipeDetailsViewModel RecipeDetailsViewModel { get; set; }
-            = new RecipeDetailsViewModel();
+            = new RecipeDetailsViewModel(App.NavigationService, App.DialogService);
         public static RecipeIngredientsViewModel RecipeIngredientsViewModel { get; set; }
             = new RecipeIngredientsViewModel();
         public static RecipiesCathegoryViewModel RecipiesCathegoryViewModel { get; set; }
@@ -32,6 +34,6 @@ namespace CookBook.Utility
             = new RecipiesListViewModel(App.NavigationService);
 
         public static ShoppingListViewModel ShoppingListViewModel { get; set; }
-            = new ShoppingListViewModel();
+            = new ShoppingListViewModel(App.DialogService);
     }
 }

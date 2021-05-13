@@ -34,7 +34,7 @@ namespace CookBook.ViewModels.Recipies
         private async void OnBreakfastsCommand()
         {
             CookBookDatabase database = await CookBookDatabase.Instance;
-            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.Breakfast);
+            var recipies = await database.GetRecipiesByTypeAsync(Models.RecipeType.Breakfast);
 
             _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Breakfasts");
         }
@@ -42,7 +42,7 @@ namespace CookBook.ViewModels.Recipies
         private async void OnStartersCommand()
         {
             CookBookDatabase database = await CookBookDatabase.Instance;
-            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.Starter);
+            var recipies = await database.GetRecipiesByTypeAsync(Models.RecipeType.Starter);
 
             _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Starters");
         }
@@ -50,7 +50,7 @@ namespace CookBook.ViewModels.Recipies
         private async void OnSoupsCommand()
         {
             CookBookDatabase database = await CookBookDatabase.Instance;
-            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.Soup);
+            var recipies = await database.GetRecipiesByTypeAsync(Models.RecipeType.Soup);
 
             _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Soups");
         }
@@ -58,7 +58,7 @@ namespace CookBook.ViewModels.Recipies
         private async void OnMainCoursesCommand()
         {
             CookBookDatabase database = await CookBookDatabase.Instance;
-            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.MainCourse);
+            var recipies = await database.GetRecipiesByTypeAsync(Models.RecipeType.MainCourse);
 
             _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "MainCoursers");
         }
@@ -66,7 +66,7 @@ namespace CookBook.ViewModels.Recipies
         private async void OnDessertsCommand()
         {
             CookBookDatabase database = await CookBookDatabase.Instance;
-            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.Dessert);
+            var recipies = await database.GetRecipiesByTypeAsync(Models.RecipeType.Dessert);
 
             _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Desserts");
         }
@@ -74,7 +74,7 @@ namespace CookBook.ViewModels.Recipies
         private async void OnOthersCommand()
         {
             CookBookDatabase database = await CookBookDatabase.Instance;
-            var recipies = await database.GetItemsByTypeAsync(Models.RecipeType.Other);
+            var recipies = await database.GetRecipiesByTypeAsync(Models.RecipeType.Other);
 
             _navigationService.NavigateTo(ViewNames.RecipiesListView, recipies, "Others");
         }

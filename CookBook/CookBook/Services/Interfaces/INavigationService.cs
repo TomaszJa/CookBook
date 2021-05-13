@@ -17,5 +17,6 @@ namespace CookBook.Services.Interfaces
         void GoBack();
         void NavigateTo(string pageKey, object parameter = null);
         void NavigateTo(string pageKey, List<Recipe> recipies, object parameter = null);
+        void NavigateTo(string pageKey, List<ShoppingListItem> shoppingListItems, object parameter = null);
     }
 }

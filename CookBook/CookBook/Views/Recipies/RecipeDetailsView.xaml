@@ -15,19 +15,36 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Text="Preparation Time (in minutes)" 
-                       Grid.Row="0" ></Label>
+                <Button x:Name="EditRecipeButton"
+                        Command="{Binding EditCommand}"
+                        Text="Edit Recipe" 
+                        Grid.Row="0"
+                        Grid.Column="0"></Button>
+                <Button x:Name="DeliteRecipeButton"
+                        Command="{Binding DeleteCommand}"
+                        Text="Delete Recipe" 
+                        Grid.Row="0"
+                        Grid.Column="1"></Button>
+                <Label Text="Preparation Time (in minutes): " 
+                       Grid.Row="1" 
+                       Grid.Column="0"></Label>
                 <Label Grid.Row="1"
+                       Grid.Column="1"
                        Text="{Binding RecipeToView.PreparationTime, Mode=TwoWay}"></Label>
                 <Label Text="Description" 
+                        Grid.ColumnSpan="2"
                        Grid.Row="2" ></Label>
                 <Label Grid.Row="3"
+                        Grid.ColumnSpan="2"
                         Text="{Binding RecipeToView.Description, Mode=TwoWay}"
                        VerticalOptions="Center"></Label>
                 <Label Text="Link to Recipe" 
+                        Grid.ColumnSpan="2"
                        Grid.Row="4" ></Label>
                 <Label Grid.Row="5"
+                        Grid.ColumnSpan="2"
                        Text="{Binding RecipeToView.StringURL, Mode=TwoWay}"
                        HorizontalTextAlignment="Center" 
                        VerticalOptions="Center"></Label>

@@ -27,9 +27,12 @@ namespace CookBook.ViewModels.Home
             ShoppingListCommand = new Command(OnShoppingListCommand);
         }
 
-        private void OnShoppingListCommand()
+        private async void OnShoppingListCommand()
         {
-            _navigationService.NavigateTo(ViewNames.ShoppingListView);
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            List<ShoppingListItem> items = await database.GetShoppingListItemsAsync();
+
+            _navigationService.NavigateTo(ViewNames.ShoppingListView, items, null);
         }
 
         private void OnBrowseRecipiesCommand()

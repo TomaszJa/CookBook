@@ -1,4 +1,5 @@
-﻿using CookBook.Services.ServiceClasses;
+﻿using CookBook.Services.Interfaces;
+using CookBook.Services.ServiceClasses;
 using CookBook.Utility;
 using CookBook.Views.Home;
 using CookBook.Views.Recipies;
@@ -12,6 +13,7 @@ namespace CookBook
     public partial class App : Application
     {
         public static NavigationService NavigationService { get; } = new NavigationService();
+        public static IDialogService DialogService { get; } = new DialogService();
 
         public App()
         {
@@ -26,6 +28,7 @@ namespace CookBook
             NavigationService.Configure(ViewNames.RecipeCreateView, typeof(RecipeCreateView));
             NavigationService.Configure(ViewNames.RecipeIngredientsView, typeof(RecipeIngredientsView));
             NavigationService.Configure(ViewNames.RecipeDetailsView, typeof(RecipeDetailsView));
+            NavigationService.Configure(ViewNames.RecipeEditView, typeof(RecipeEditView));
             NavigationService.Configure(ViewNames.ShoppingListView, typeof(ShoppingListView));
 
 

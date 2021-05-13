@@ -1,4 +1,5 @@
-﻿using CookBook.Models;
+﻿using CookBook.Data;
+using CookBook.Models;
 using CookBook.Services.Interfaces;
 using CookBook.Utility;
 using System;
@@ -49,9 +50,22 @@ namespace CookBook.ViewModels.Recipies
 
         private void OnRecipeSelectedCommand(Recipe recipe)
         {
+            // Z jakiegoś powodu Initialize nie aktualizuje obiektów w dzieciach tabbed page
+            // dlatego inicjalizuję je tutaj.
             ViewModelLocator.RecipeDetailsViewModel.Initialize(recipe);
             ViewModelLocator.RecipeIngredientsViewModel.Initialize(recipe);
             _navigationService.NavigateTo(ViewNames.RecipiesTabbedView, recipe);
+
+            MessagingCenter.Subscribe<RecipeDetailsViewModel, Recipe>
+                (this, MessageNames.RecipeChangedMessage, OnRecipeChanged);
+        }
+
+        private async void OnRecipeChanged(RecipeDetailsViewModel sender, Recipe recipe)
+        {
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            var recipies = await database.GetRecipiesByTypeAsync(recipe.Type);
+
+            Recipies = new ObservableCollection<Recipe>(recipies);
         }
 
         public override void Initialize(object parameter)

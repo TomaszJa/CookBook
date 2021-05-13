@@ -33,5 +33,10 @@ namespace CookBook.ViewModels
         {
 
         }
+
+        public virtual void Initialize(object parameter, List<ShoppingListItem> shoppingListItems)
+        {
+
+        }
     }
 }

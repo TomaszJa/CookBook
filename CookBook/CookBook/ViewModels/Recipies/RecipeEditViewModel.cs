@@ -1,6 +1,7 @@
 ﻿using CookBook.Data;
 using CookBook.Models;
 using CookBook.Services.Interfaces;
+using CookBook.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ using Xamarin.Forms;
 
 namespace CookBook.ViewModels.Recipies
 {
-    public class RecipeCreateViewModel : BaseViewModel
+    public class RecipeEditViewModel : BaseViewModel
     {
         private Recipe _recipe;
         private List<string> _types = new List<string>()
@@ -19,15 +20,6 @@ namespace CookBook.ViewModels.Recipies
         private string _chosenValue;
         private INavigationService _navigationService;
 
-        public Recipe RecipeToCreate
-        {
-            get { return _recipe; }
-            set
-            {
-                _recipe = value;
-                OnPropertyChanged("SelectedRecipe");
-            }
-        }
         public List<string> Types
         {
             get { return _types; }
@@ -37,7 +29,6 @@ namespace CookBook.ViewModels.Recipies
                 OnPropertyChanged("Type");
             }
         }
-
         public string ChosenValue
         {
             get { return _chosenValue; }
@@ -47,36 +38,44 @@ namespace CookBook.ViewModels.Recipies
                 OnPropertyChanged("ChosenValue");
             }
         }
+        public Recipe RecipeToEdit
+        {
+            get { return _recipe; }
+            set
+            {
+                _recipe = value;
+                OnPropertyChanged("SelectedRecipe");
+            }
+        }
 
-        public ICommand AddCommand { get; }
+        public ICommand SaveCommand { get; }
 
-        public RecipeCreateViewModel(INavigationService navigationService)
+        public RecipeEditViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
 
-            RecipeToCreate = new Recipe()
-            { 
-                Type = RecipeType.Other
-            };
-            AddCommand = new Command(OnAddCommand);
+            RecipeToEdit = new Recipe();
+
+            SaveCommand = new Command(OnSaveCommand);
         }
 
-        private async void OnAddCommand()
+        private async void OnSaveCommand()
         {
             try
             {
                 SetRecipeType();
-                if (!string.IsNullOrEmpty(RecipeToCreate.Name) && !string.IsNullOrEmpty(RecipeToCreate.Ingredients)
-                    && !string.IsNullOrEmpty(RecipeToCreate.Description))
+                if (!string.IsNullOrEmpty(RecipeToEdit.Name) && !string.IsNullOrEmpty(RecipeToEdit.Ingredients)
+                    && !string.IsNullOrEmpty(RecipeToEdit.Description))
                 {
                     CookBookDatabase database = await CookBookDatabase.Instance;
-                    await database.SaveRecipeAsync(RecipeToCreate);
+                    await database.SaveRecipeAsync(RecipeToEdit);
+                    MessagingCenter.Send(this, MessageNames.RecipeChangedMessage, RecipeToEdit);
                     _navigationService.GoBack();
                 }
             }
             catch
             {
-                
+
             }
         }
 
@@ -85,27 +84,31 @@ namespace CookBook.ViewModels.Recipies
             switch (ChosenValue)
             {
                 case "Breakfast":
-                    RecipeToCreate.Type = RecipeType.Breakfast;
+                    RecipeToEdit.Type = RecipeType.Breakfast;
                     break;
                 case "Starter":
-                    RecipeToCreate.Type = RecipeType.Starter;
+                    RecipeToEdit.Type = RecipeType.Starter;
                     break;
                 case "Soup":
-                    RecipeToCreate.Type = RecipeType.Soup;
+                    RecipeToEdit.Type = RecipeType.Soup;
                     break;
                 case "Main Course":
-                    RecipeToCreate.Type = RecipeType.MainCourse;
+                    RecipeToEdit.Type = RecipeType.MainCourse;
                     break;
                 case "Dessert":
-                    RecipeToCreate.Type = RecipeType.Dessert;
+                    RecipeToEdit.Type = RecipeType.Dessert;
                     break;
                 case "Other":
-                    RecipeToCreate.Type = RecipeType.Other;
+                    RecipeToEdit.Type = RecipeType.Other;
                     break;
                 default:
-                    RecipeToCreate.Type = RecipeType.Other;
                     break;
             }
+        }
+
+        public override void Initialize(object parameter)
+        {
+            RecipeToEdit = parameter as Recipe;
         }
     }
 }

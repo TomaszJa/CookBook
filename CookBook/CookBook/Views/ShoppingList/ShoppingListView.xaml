@@ -1,12 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CookBook.Views.ShoppingList.ShoppingListView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Shopping List"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             xmlns:behaviors="clr-namespace:CookBook.Behaviors"
+             x:Class="CookBook.Views.ShoppingList.ShoppingListView"
+             Title="Shopping List">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button x:Name="ClearShoppingListButton"
+                        Command="{Binding ClearShoppingListCommand}"
+                        Text="Clear Shopping List" 
+                        Grid.Row="0" ></Button>
+        <ListView HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding ShoppingListItems}"
+                  x:Name="RecipiesList" CachingStrategy="RecycleElement">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding ItemSelectedCommand}"
+                    EventArgsConverter="{StaticResource LocalItemTappedConverter}">
+
+                </behaviors:EventToCommandBehavior>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HeightRequest="100" Margin="5" RowSpacing="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Margin="3"></Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

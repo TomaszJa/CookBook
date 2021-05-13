@@ -29,8 +29,6 @@ namespace CookBook.ViewModels.Recipies
         public override void Initialize(object parameter)
         {
             SelectedRecipe = parameter as Recipe;
-            RecipeIngredientsTab.Initialize(SelectedRecipe);
-            RecipeDetailsTab.Initialize(SelectedRecipe);
         }
     }
 }
