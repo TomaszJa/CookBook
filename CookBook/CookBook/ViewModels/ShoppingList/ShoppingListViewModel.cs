@@ -69,6 +69,8 @@ namespace CookBook.ViewModels.ShoppingList
                 case "Item Bought":
                     item.Check = true;
                     await database.SaveShoppingListItemAsync(item);
+                    ShoppingListItems.Remove(item);
+                    ShoppingListItems.Add(item);
                     break;
                 case "Delete":
                     var result = await _dialogService.ConfirmDialog("Are you sure you want to DELETE this item from the Shopping List?", "Delete Item", "Yes", "No");

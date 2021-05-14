@@ -34,7 +34,7 @@
                 <Setter Property="FontSize" Value="Large"></Setter>
                 <Setter Property="FontAttributes" Value="Bold"></Setter>
             </Style>
-            <Style x:Key="NotBoughtLabel" TargetType="Label">
+            <Style x:Key="a" TargetType="Label">
                 <Setter Property="TextColor" Value="AntiqueWhite"></Setter>
                 <Setter Property="BackgroundColor" Value="DarkRed"></Setter>
                 <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
@@ -42,7 +42,7 @@
                 <Setter Property="FontSize" Value="Large"></Setter>
                 <Setter Property="FontAttributes" Value="Bold,Italic"></Setter>
             </Style>
-            <Style x:Key="BoughtLabel" TargetType="Label">
+            <Style x:Key="d" TargetType="Label">
                 <Setter Property="TextColor" Value="AntiqueWhite"></Setter>
                 <Setter Property="BackgroundColor" Value="DarkGreen"></Setter>
                 <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
@@ -50,6 +50,36 @@
                 <Setter Property="FontSize" Value="Large"></Setter>
                 <Setter Property="FontAttributes" Value="Bold,Italic"></Setter>
             </Style>
+            <DataTemplate x:Key="BoughtLabel">
+                <ViewCell>
+                    <Grid HeightRequest="100" Margin="5" RowSpacing="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" TextColor="AntiqueWhite"
+                               BackgroundColor="DarkGreen" FontSize="Medium" 
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="3"></Label>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="NotBoughtLabel">
+                <ViewCell>
+                    <Grid HeightRequest="100" Margin="5" RowSpacing="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" TextColor="AntiqueWhite"
+                               BackgroundColor="DarkRed" FontSize="Medium"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="3"></Label>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
             <local:ItemTemplateSelector x:Key="ItemTemplateSelector"
                 BoughtLabel="{StaticResource BoughtLabel}"
                 NotBoughtLabel="{StaticResource NotBoughtLabel}" />

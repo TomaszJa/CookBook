@@ -8,7 +8,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <ImageButton x:Name="ClearShoppingListButton"
@@ -17,7 +17,7 @@
                         Command="{Binding ClearShoppingListCommand}"
                         Grid.Row="0" ></ImageButton>
         <ListView HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding ShoppingListItems}"
-                  x:Name="RecipiesList" CachingStrategy="RecycleElement">
+                  x:Name="RecipiesList" CachingStrategy="RecycleElement" ItemTemplate="{StaticResource ItemTemplateSelector}">
             <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior
                     EventName="ItemTapped"
@@ -26,22 +26,6 @@
 
                 </behaviors:EventToCommandBehavior>
             </ListView.Behaviors>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid HeightRequest="100" Margin="5" RowSpacing="2">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Margin="3"></Label>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
         </ListView>
         <ImageButton x:Name="AddItemButton"
                 Source="AddItem.png"
