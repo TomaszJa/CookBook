@@ -23,7 +23,7 @@ namespace CookBook.ViewModels.Recipies
             set
             {
                 _recipe = value;
-                OnPropertyChanged("SelectedRecipe");
+                OnPropertyChanged("RecipeToView");
             }
         }
 

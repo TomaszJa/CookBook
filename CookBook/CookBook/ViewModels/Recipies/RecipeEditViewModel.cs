@@ -27,7 +27,7 @@ namespace CookBook.ViewModels.Recipies
             set
             {
                 _types = value;
-                OnPropertyChanged("Type");
+                OnPropertyChanged("Types");
             }
         }
         public string ChosenValue
@@ -45,7 +45,7 @@ namespace CookBook.ViewModels.Recipies
             set
             {
                 _recipe = value;
-                OnPropertyChanged("SelectedRecipe");
+                OnPropertyChanged("RecipeToEdit");
             }
         }
 

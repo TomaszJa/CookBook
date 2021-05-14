@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CookBook.Services.Interfaces
 {
-    // Serwis, który pozwala na wyświetlanie okienek z error messages
+    // Serwis, który pozwala na wyświetlanie okienek z error messages i nie tylko
     public interface IDialogService
     {
         Task ShowDialog(string message, string title, string buttonLabel);

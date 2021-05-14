@@ -39,7 +39,7 @@ namespace CookBook.ViewModels.Recipies
             set
             {
                 _recipeType = value;
-                OnPropertyChanged("Title");
+                OnPropertyChanged("RecipeType");
             }
         }
 

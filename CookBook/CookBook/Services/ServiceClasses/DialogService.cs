@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CookBook.Services.ServiceClasses
 {
+    // Serwis w zasadzie potrzebny do wygodniejszego używania okienek dialogowych
     public class DialogService : IDialogService
     {
         public Task<string> ActionSheet(string message, string cancel, string delete, string[] options)

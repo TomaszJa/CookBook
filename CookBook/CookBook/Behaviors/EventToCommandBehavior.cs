@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace CookBook.Behaviors
 {
-    // Klasa, która pozwala do określania eventów UI i komand ViewModelu, które
+    // Klasa, która pozwala na określanie eventów UI i komand ViewModelu, które
     // chcemy dla danego eventu wywołać
     class EventToCommandBehavior : BindableBehavior<View>
     {

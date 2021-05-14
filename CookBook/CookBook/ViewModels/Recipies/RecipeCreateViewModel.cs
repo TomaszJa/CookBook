@@ -26,7 +26,7 @@ namespace CookBook.ViewModels.Recipies
             set
             {
                 _recipe = value;
-                OnPropertyChanged("SelectedRecipe");
+                OnPropertyChanged("RecipeToCreate");
             }
         }
         public List<string> Types
@@ -35,7 +35,7 @@ namespace CookBook.ViewModels.Recipies
             set
             {
                 _types = value;
-                OnPropertyChanged("Type");
+                OnPropertyChanged("Types");
             }
         }
 

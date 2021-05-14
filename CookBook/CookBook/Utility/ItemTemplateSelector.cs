@@ -6,6 +6,7 @@ using Xamarin.Forms;
 
 namespace CookBook.Utility
 {
+    // Klasa potrzebna do wyboru Templatki obiektu, w tym przypadku listy zakupów - czerwony/zielony
     public class ItemTemplateSelector : DataTemplateSelector
     {
         public DataTemplate NotBoughtLabel { get; set; }

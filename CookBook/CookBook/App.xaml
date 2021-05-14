@@ -34,22 +34,6 @@
                 <Setter Property="FontSize" Value="Large"></Setter>
                 <Setter Property="FontAttributes" Value="Bold"></Setter>
             </Style>
-            <Style x:Key="a" TargetType="Label">
-                <Setter Property="TextColor" Value="AntiqueWhite"></Setter>
-                <Setter Property="BackgroundColor" Value="DarkRed"></Setter>
-                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
-                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
-                <Setter Property="FontSize" Value="Large"></Setter>
-                <Setter Property="FontAttributes" Value="Bold,Italic"></Setter>
-            </Style>
-            <Style x:Key="d" TargetType="Label">
-                <Setter Property="TextColor" Value="AntiqueWhite"></Setter>
-                <Setter Property="BackgroundColor" Value="DarkGreen"></Setter>
-                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
-                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
-                <Setter Property="FontSize" Value="Large"></Setter>
-                <Setter Property="FontAttributes" Value="Bold,Italic"></Setter>
-            </Style>
             <DataTemplate x:Key="BoughtLabel">
                 <ViewCell>
                     <Grid HeightRequest="100" Margin="5" RowSpacing="2">
