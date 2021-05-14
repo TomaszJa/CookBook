@@ -1,25 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CookBook.Views.Recipies.RecipeIngredientsView">
+             x:Class="CookBook.Views.Recipies.RecipeIngredientsView"
+             Style="{StaticResource PageStyle}">
     <ContentPage.Content>
         <ScrollView>
-            <Grid>
+            <Grid Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0"
+                       Style="{StaticResource TextLabel}"
                         Text="{Binding RecipeToView.Ingredients, Mode=TwoWay}"
                        VerticalOptions="Center"></Label>
-                <Button x:Name="AddToShoppingListButton"
+                <ImageButton x:Name="AddToShoppingListButton"
+                        Source="AddToShoppingList.png"
+                        Style="{StaticResource PictureButton}"
                         Command="{Binding AddToShoppingListCommand}"
-                        Text="Add To Shopping List" 
-                        Grid.Row="2" ></Button>
+                        Grid.Row="2" ></ImageButton>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

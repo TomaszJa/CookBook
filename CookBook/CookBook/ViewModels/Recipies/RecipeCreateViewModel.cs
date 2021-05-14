@@ -17,6 +17,7 @@ namespace CookBook.ViewModels.Recipies
             "Breakfast", "Starter", "Soup", "Main Course", "Dessert", "Other"
         };
         private string _chosenValue;
+        private IDialogService _dialogService;
         private INavigationService _navigationService;
 
         public Recipe RecipeToCreate
@@ -50,8 +51,9 @@ namespace CookBook.ViewModels.Recipies
 
         public ICommand AddCommand { get; }
 
-        public RecipeCreateViewModel(INavigationService navigationService)
+        public RecipeCreateViewModel(INavigationService navigationService, IDialogService dialogService)
         {
+            _dialogService = dialogService;
             _navigationService = navigationService;
 
             RecipeToCreate = new Recipe()
@@ -63,14 +65,37 @@ namespace CookBook.ViewModels.Recipies
 
         private async void OnAddCommand()
         {
+            var validInput = false;
             try
             {
                 SetRecipeType();
                 if (!string.IsNullOrEmpty(RecipeToCreate.Name) && !string.IsNullOrEmpty(RecipeToCreate.Ingredients)
                     && !string.IsNullOrEmpty(RecipeToCreate.Description))
                 {
+                    validInput = true;
+                }
+                if (!string.IsNullOrEmpty(RecipeToCreate.StringURL))
+                {
+                    validInput = true;
+                    try
+                    {
+                        RecipeToCreate.URL = new Uri(RecipeToCreate.StringURL);
+                    }
+                    catch
+                    {
+                        await _dialogService.ShowDialog("You should specify a correct Url", "Wrong input", "Ok");
+                        validInput = false;
+                    }
+                }
+                if (validInput)
+                {
                     CookBookDatabase database = await CookBookDatabase.Instance;
                     await database.SaveRecipeAsync(RecipeToCreate);
+
+                    RecipeToCreate = new Recipe()
+                    {
+                        Type = RecipeType.Other
+                    };
                     _navigationService.GoBack();
                 }
             }
@@ -106,6 +131,14 @@ namespace CookBook.ViewModels.Recipies
                     RecipeToCreate.Type = RecipeType.Other;
                     break;
             }
+        }
+
+        public override void Initialize(object parameter)
+        {
+            RecipeToCreate = new Recipe()
+            {
+                Type = RecipeType.Other
+            };
         }
     }
 }

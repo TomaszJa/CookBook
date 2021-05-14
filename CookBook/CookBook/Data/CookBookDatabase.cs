@@ -35,6 +35,10 @@ namespace CookBook.Data
             return Database.Table<Recipe>().Where(t => t.Type == type).ToListAsync();
         }
 
+        public Task<List<Recipe>> GetRecipiesByNameAsync(string name, RecipeType type)
+        {
+            return Database.Table<Recipe>().Where(n => n.Name.Contains(name) && n.Type == type).ToListAsync();
+        }
 
         public Task<int> SaveRecipeAsync(Recipe item)
         {

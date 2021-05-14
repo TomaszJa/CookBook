@@ -3,17 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:CookBook.Behaviors"
              x:Class="CookBook.Views.ShoppingList.ShoppingListView"
-             Title="Shopping List">
+             Title="Shopping List"
+             Style="{StaticResource PageStyle}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button x:Name="ClearShoppingListButton"
+        <ImageButton x:Name="ClearShoppingListButton"
+                        Source="ClearShoppingList.png"
+                        Style="{StaticResource PictureButton}"
                         Command="{Binding ClearShoppingListCommand}"
-                        Text="Clear Shopping List" 
-                        Grid.Row="0" ></Button>
+                        Grid.Row="0" ></ImageButton>
         <ListView HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding ShoppingListItems}"
                   x:Name="RecipiesList" CachingStrategy="RecycleElement">
             <ListView.Behaviors>
@@ -41,9 +43,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="AddItemButton"
-                        Command="{Binding AddItemCommand}"
-                        Text="Add Item" 
-                        Grid.Row="2" ></Button>
+        <ImageButton x:Name="AddItemButton"
+                Source="AddItem.png"
+                Style="{StaticResource PictureButton}"
+                Command="{Binding AddItemCommand}"
+                Grid.Row="2" ></ImageButton>
     </Grid>
 </ContentPage>

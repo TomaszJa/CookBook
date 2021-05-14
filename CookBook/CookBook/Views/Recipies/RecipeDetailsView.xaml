@@ -1,53 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CookBook.Views.Recipies.RecipeDetailsView">
+             x:Class="CookBook.Views.Recipies.RecipeDetailsView"
+             Style="{StaticResource PageStyle}">
     <ContentPage.Content>
         <ScrollView>
-            <Grid>
+            <Grid Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="EditRecipeButton"
+                <ImageButton x:Name="EditRecipeButton"
+                        Source="Edit.png"
+                        Style="{StaticResource PictureButton}"
                         Command="{Binding EditCommand}"
-                        Text="Edit Recipe" 
                         Grid.Row="0"
-                        Grid.Column="0"></Button>
-                <Button x:Name="DeliteRecipeButton"
+                        Grid.Column="0"></ImageButton>
+                <ImageButton x:Name="DeliteRecipeButton"
                         Command="{Binding DeleteCommand}"
-                        Text="Delete Recipe" 
+                        Source="Delete.png"
+                        Style="{StaticResource PictureButton}"
                         Grid.Row="0"
-                        Grid.Column="1"></Button>
+                        Grid.Column="1"></ImageButton>
                 <Label Text="Preparation Time (in minutes): " 
+                       Style="{StaticResource TextLabel}"
                        Grid.Row="1" 
                        Grid.Column="0"></Label>
                 <Label Grid.Row="1"
                        Grid.Column="1"
-                       Text="{Binding RecipeToView.PreparationTime, Mode=TwoWay}"></Label>
-                <Label Text="Description" 
+                       Text="{Binding RecipeToView.PreparationTime, Mode=TwoWay}"
+                       Style="{StaticResource TextLabel}"></Label>
+                <Label Text="Description:" 
                         Grid.ColumnSpan="2"
-                       Grid.Row="2" ></Label>
+                       Grid.Row="2"
+                       Style="{StaticResource LargeTextLabel}"></Label>
                 <Label Grid.Row="3"
                         Grid.ColumnSpan="2"
                         Text="{Binding RecipeToView.Description, Mode=TwoWay}"
+                       Style="{StaticResource TextLabel}"
                        VerticalOptions="Center"></Label>
-                <Label Text="Link to Recipe" 
-                        Grid.ColumnSpan="2"
-                       Grid.Row="4" ></Label>
-                <Label Grid.Row="5"
-                        Grid.ColumnSpan="2"
-                       Text="{Binding RecipeToView.StringURL, Mode=TwoWay}"
-                       HorizontalTextAlignment="Center" 
-                       VerticalOptions="Center"></Label>
+                <ImageButton x:Name="RecipeLinkButton"
+                        Source="FollowUrl.png"
+                        Style="{StaticResource PictureButton}"
+                        Command="{Binding FollowUrlCommand}"
+                        Grid.Row="5"
+                        Grid.ColumnSpan="2"></ImageButton>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

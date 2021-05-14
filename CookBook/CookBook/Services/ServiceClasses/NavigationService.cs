@@ -73,6 +73,28 @@ namespace CookBook.Services.ServiceClasses
             }
         }
 
+        public void NavigateTo(string pageKey, List<Recipe> recipies, RecipeType type, object parameter = null)
+        {
+            if (pages.TryGetValue(pageKey, out Type pageType))
+            {
+                // Utworzenie wybranej strony
+                var page = (Page)Activator.CreateInstance(pageType);
+                page.SetNavigationArgs(parameter);
+
+                // I przejście do niej
+                MainPage.Navigation.PushAsync(page);
+
+                // Ustawiam BindingContext w stronie, na któą przechodzę
+                // na obiekt przekazany z poprzedniej strony
+                // Wykorzystuję do tego metodę virtualną Initialize
+                (page.BindingContext as BaseViewModel).Initialize(parameter, recipies, type);
+            }
+            else
+            {
+                throw new ArgumentException($"This page doesn't exist: {pageKey}.", nameof(pageKey));
+            }
+        }
+
         public void NavigateTo(string pageKey, List<ShoppingListItem> shoppingListItems, object parameter = null)
         {
             if (pages.TryGetValue(pageKey, out Type pageType))

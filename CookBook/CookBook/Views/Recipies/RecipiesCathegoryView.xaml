@@ -2,56 +2,61 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBook.Views.Recipies.RecipiesCathegoryView"
-             Title="Recipies Cathegories">
+             Title="Recipies Cathegories"
+             Style="{StaticResource PageStyle}">
     <ContentPage.Content>
-        <ScrollView>
-            <Grid Margin="5" RowSpacing="2">
+        <Grid Margin="5" RowSpacing="5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200"></RowDefinition>
-                    <RowDefinition Height="200"></RowDefinition>
-                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="Breakfasts"
+                <ImageButton x:Name="Breakfasts"
                         Command="{Binding BreakfastsCommand}"
-                        Text="Breakfasts"
+                        Source="Breakfasts.png"
+                        Style="{StaticResource PictureButton}"
                         Grid.Row="0" 
                         Grid.Column="0"
-                        Grid.ColumnSpan="1"></Button>
-                <Button x:Name="Starters"
+                        Grid.ColumnSpan="1"></ImageButton>
+                <ImageButton x:Name="Starters"
                         Command="{Binding StartersCommand}"
-                        Text="Starters"
+                        Source="Starters.png"
+                        Style="{StaticResource PictureButton}"
                         Grid.Row="0" 
                         Grid.Column="1"
-                        Grid.ColumnSpan="1"></Button>
-                <Button x:Name="Soups"
+                        Grid.ColumnSpan="1"></ImageButton>
+                <ImageButton x:Name="Soups"
                         Command="{Binding SoupsCommand}"
-                        Text="Soups"
+                        Source="Soups.png"
+                        Style="{StaticResource PictureButton}"
                         Grid.Row="1" 
                         Grid.Column="0"
-                        Grid.ColumnSpan="1"></Button>
-                <Button x:Name="MainCourses"
+                        Grid.ColumnSpan="1"></ImageButton>
+                <ImageButton x:Name="MainCourses"
                         Command="{Binding MainCoursesCommand}"
-                        Text="Main Courses"
+                        Source="MainCourses.png"
+                        Style="{StaticResource PictureButton}"
                         Grid.Row="1" 
                         Grid.Column="1"
-                        Grid.ColumnSpan="1"></Button>
-                <Button x:Name="Desserts"
+                        Grid.ColumnSpan="1"></ImageButton>
+                <ImageButton x:Name="Desserts"
                         Command="{Binding DessertsCommand}"
-                        Text="Desserts"
+                        Source="Desserts.png"
+                        Style="{StaticResource PictureButton}"
                         Grid.Row="2" 
                         Grid.Column="0"
-                        Grid.ColumnSpan="1"></Button>
-                <Button x:Name="Others"
+                        Grid.ColumnSpan="1"></ImageButton>
+                <ImageButton x:Name="Others"
                         Command="{Binding OthersCommand}"
-                        Text="Others"
+                        Source="Others.png"
+                        Style="{StaticResource PictureButton}"
                         Grid.Row="2" 
                         Grid.Column="1"
-                        Grid.ColumnSpan="1"></Button>
+                        Grid.ColumnSpan="1"></ImageButton>
             </Grid>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

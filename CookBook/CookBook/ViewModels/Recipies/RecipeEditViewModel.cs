@@ -18,6 +18,7 @@ namespace CookBook.ViewModels.Recipies
             "Breakfast", "Starter", "Soup", "Main Course", "Dessert", "Other"
         };
         private string _chosenValue;
+        private IDialogService _dialogService;
         private INavigationService _navigationService;
 
         public List<string> Types
@@ -50,8 +51,9 @@ namespace CookBook.ViewModels.Recipies
 
         public ICommand SaveCommand { get; }
 
-        public RecipeEditViewModel(INavigationService navigationService)
+        public RecipeEditViewModel(INavigationService navigationService, IDialogService dialogService)
         {
+            _dialogService = dialogService;
             _navigationService = navigationService;
 
             RecipeToEdit = new Recipe();
@@ -61,11 +63,29 @@ namespace CookBook.ViewModels.Recipies
 
         private async void OnSaveCommand()
         {
+            var validInput = false;
             try
             {
                 SetRecipeType();
                 if (!string.IsNullOrEmpty(RecipeToEdit.Name) && !string.IsNullOrEmpty(RecipeToEdit.Ingredients)
                     && !string.IsNullOrEmpty(RecipeToEdit.Description))
+                {
+                    validInput = true;
+                }
+                if (!string.IsNullOrEmpty(RecipeToEdit.StringURL))
+                {
+                    validInput = true;
+                    try
+                    {
+                        RecipeToEdit.URL = new Uri(RecipeToEdit.StringURL);
+                    }
+                    catch
+                    {
+                        await _dialogService.ShowDialog("You should specify a correct Url", "Wrong input", "Ok");
+                        validInput = false;
+                    }
+                }
+                if (validInput)
                 {
                     CookBookDatabase database = await CookBookDatabase.Instance;
                     await database.SaveRecipeAsync(RecipeToEdit);

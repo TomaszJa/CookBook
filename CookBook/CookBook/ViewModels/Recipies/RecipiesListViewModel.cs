@@ -14,11 +14,14 @@ namespace CookBook.ViewModels.Recipies
     public class RecipiesListViewModel : BaseViewModel
     {
         private string _title;
+        private string _searchQuery;
         private ObservableCollection<Recipe> _recipies;
+        private RecipeType _recipeType;
 
         private INavigationService _navigationService;
 
         public ICommand RecipeSelectedCommand { get; }
+        public ICommand SearchCommand { get; }
 
         public string Title
         {
@@ -26,6 +29,16 @@ namespace CookBook.ViewModels.Recipies
             set
             {
                 _title = value;
+                OnPropertyChanged("Title");
+            }
+        }
+
+        public RecipeType RecipeType
+        {
+            get { return _recipeType; }
+            set
+            {
+                _recipeType = value;
                 OnPropertyChanged("Title");
             }
         }
@@ -40,12 +53,31 @@ namespace CookBook.ViewModels.Recipies
             }
         }
 
+        public string SearchQuery
+        {
+            get { return _searchQuery; }
+            set
+            {
+                _searchQuery = value;
+                OnPropertyChanged("SearchQuery");
+            }
+        }
+
         public RecipiesListViewModel(INavigationService navigationService)
         {
             Recipies = new ObservableCollection<Recipe>();
             _navigationService = navigationService;
 
             RecipeSelectedCommand = new Command<Recipe>(OnRecipeSelectedCommand);
+            SearchCommand = new Command(OnSearchCommand);
+        }
+
+        private async void OnSearchCommand()
+        {
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            var recipies = await database.GetRecipiesByNameAsync(SearchQuery, RecipeType);
+
+            Recipies = new ObservableCollection<Recipe>(recipies);
         }
 
         private void OnRecipeSelectedCommand(Recipe recipe)
@@ -73,15 +105,12 @@ namespace CookBook.ViewModels.Recipies
             Title = parameter as string;
         }
 
-        public override void Initialize(object parameter, List<Recipe> recipies)
+        public override void Initialize(object parameter, List<Recipe> recipies, RecipeType type)
         {
-            Recipies = new ObservableCollection<Recipe>();
+            SearchQuery = "";
+            Recipies = new ObservableCollection<Recipe>(recipies);
             Title = parameter as string;
-
-            foreach ( var recipe in recipies )
-            {
-                Recipies.Add(recipe);
-            }
+            RecipeType = type;
         }
     }
 }

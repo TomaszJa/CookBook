@@ -2,37 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBook.Views.Home.HomePageView"
-             Title="Cook Book">
+             Title="Cook Book"
+             Style="{StaticResource PageStyle}">
     <ContentPage.Content>
         <ScrollView>
-            <Grid Margin="5" RowSpacing="2">
+            <Grid Margin="10" RowSpacing="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200"></RowDefinition>
-                    <RowDefinition Height="200"></RowDefinition>
-                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="AddRecipe"
+                <ImageButton x:Name="AddRecipe"
                         Command="{Binding AddRecipyCommand}"
-                        Text="Add Recipe"
-                        Grid.Row="0" 
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"></Button>
-                <Button x:Name="BrowseRecipies"
+                        Source="Create_recipe.png"
+                        Style="{StaticResource PictureButton}"
+                        Grid.Row="0" ></ImageButton>
+                <ImageButton x:Name="BrowseRecipies"
                         Command="{Binding BrowseRecipiesCommand}"
-                        Text="Browse Recipies"
-                        Grid.Row="1" 
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"></Button>
-                <Button x:Name="ShoppingList"
+                        Style="{StaticResource PictureButton}"
+                        Source="BrowseRecipes.png"
+                        Grid.Row="1" ></ImageButton>
+                <ImageButton x:Name="ShoppingList"
                         Command="{Binding ShoppingListCommand}"
-                        Text="Shopping List"
-                        Grid.Row="2" 
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"></Button>
+                        Style="{StaticResource PictureButton}"
+                        Source="Shopping_List.png"
+                        Grid.Row="2" ></ImageButton>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

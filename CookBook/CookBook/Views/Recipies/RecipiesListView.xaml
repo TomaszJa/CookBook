@@ -3,12 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:CookBook.Behaviors"
              x:Class="CookBook.Views.Recipies.RecipiesListView"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             Style="{StaticResource PageStyle}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="SearchBar">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Entry Grid.Row="0"
+                        Grid.Column="0"
+                        Text="{Binding SearchQuery, Mode=TwoWay}"
+                        Placeholder="Search by Name"
+                        MaxLength="100"
+                        ClearButtonVisibility="WhileEditing"></Entry>
+            <ImageButton x:Name="SearchButton"
+                        Command="{Binding SearchCommand}"
+                        Source="Search.png"
+                        Grid.Row="0" 
+                        Grid.Column="1"
+                        Grid.ColumnSpan="1"></ImageButton>
+        </Grid>
+
         <ListView HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding Recipies}"
                   x:Name="RecipiesList" CachingStrategy="RecycleElement">
             <ListView.Behaviors>
@@ -22,15 +45,15 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid HeightRequest="100" Margin="5" RowSpacing="2">
+                        <Grid HeightRequest="100" Margin="10" RowSpacing="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Margin="3"></Label>
+                            <Image Grid.Row="0" Grid.Column="0" Source="RecipeBackground.png"></Image>
+                            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource ItemsLabel}" Text="{Binding Name}" Margin="20"></Label>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
