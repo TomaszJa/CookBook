@@ -55,20 +55,36 @@ namespace CookBook.ViewModels.ShoppingList
 
                 if (ingredientToAdd.Length > 1)
                 {
+                    var index1 = newItem.Name.IndexOf(' ');
+                    var substring1 = newItem.Name.Substring(index1+1);
+
                     foreach (var item in ShoppingListItems)
                     {
                         var ingredientType = item.Name.Split(' ');
-                        if (ingredientType.Length > 1 && ingredientType[1] == ingredientToAdd[1])
+                        if (ingredientType.Length > 1)
                         {
-                            item.Name = $"{ingredientToAdd[0]}+{item.Name}";
-                            AddAmount(ingredientToAdd, item, ingredientType, "ml");
-                            AddAmount(ingredientToAdd, item, ingredientType, "L");
-                            AddAmount(ingredientToAdd, item, ingredientType, "g");
-                            AddAmount(ingredientToAdd, item, ingredientType, "kg");
-                            AddAmount(ingredientToAdd, item, ingredientType);
-                            await database.SaveShoppingListItemAsync(item);
+                            var index2 = item.Name.IndexOf(' ');
+                            var substring2 = item.Name.Substring(index2+1);
 
-                            added = false;
+                            if (substring1 == substring2)
+                            {
+                                AddAmount(ingredientToAdd, item, ingredientType, "ml", substring2);
+                                AddAmount(ingredientToAdd, item, ingredientType, "L", substring2);
+                                AddAmount(ingredientToAdd, item, ingredientType, "g", substring2);
+                                AddAmount(ingredientToAdd, item, ingredientType, "kg", substring2);
+                                var success = AddAmount(ingredientToAdd, item, ingredientType, substring2);
+
+                                added = false;
+
+                                if (newItem.Name == item.Name && !success)
+                                {
+                                    added = true;
+                                }
+                                if (!added)
+                                {
+                                    await database.SaveShoppingListItemAsync(item);
+                                }
+                            }
                         }
                     }
                 }
@@ -80,7 +96,7 @@ namespace CookBook.ViewModels.ShoppingList
             }
         }
 
-        private void AddAmount(string[] ingredientToAdd, ShoppingListItem item, string[] ingredientType)
+        private bool AddAmount(string[] ingredientToAdd, ShoppingListItem item, string[] ingredientType, string fullName)
         {
             int number1, number2;
 
@@ -91,16 +107,14 @@ namespace CookBook.ViewModels.ShoppingList
             {
                 number1 += number2;
 
-                item.Name = $"{number1}";
+                item.Name = $"{number1} {fullName}";
 
-                for (int i = 1; i < ingredientType.Length; i++)
-                {
-                    item.Name += $" {ingredientType[i]}";
-                }
+                return true;
             }
+            return false;
         }
 
-        private static void AddAmount(string[] ingredientToAdd, ShoppingListItem item, string[] ingredientType, string cathegory)
+        private static void AddAmount(string[] ingredientToAdd, ShoppingListItem item, string[] ingredientType, string cathegory, string fullName)
         {
             if (ingredientType[0].Contains(cathegory) && ingredientToAdd[0].Contains(cathegory))
             {
@@ -112,19 +126,14 @@ namespace CookBook.ViewModels.ShoppingList
 
                 int number1, number2;
 
-                var success = int.TryParse(value1, out number1);
-                success = int.TryParse(value2, out number2);
+                var success1 = int.TryParse(value1, out number1);
+                var success2 = int.TryParse(value2, out number2);
 
-                if (success)
+                if (success1 && success2)
                 {
                     number1 += number2;
 
-                    item.Name = $"{number1}{cathegory}";
-
-                    for (int i = 1; i < ingredientType.Length; i++)
-                    {
-                        item.Name += $" {ingredientType[i]}";
-                    }
+                    item.Name = $"{number1}{cathegory} {fullName}";
                 }
             }
         }
