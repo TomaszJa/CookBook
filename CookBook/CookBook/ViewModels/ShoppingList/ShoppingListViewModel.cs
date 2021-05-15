@@ -61,6 +61,11 @@ namespace CookBook.ViewModels.ShoppingList
                         if (ingredientType.Length > 1 && ingredientType[1] == ingredientToAdd[1])
                         {
                             item.Name = $"{ingredientToAdd[0]}+{item.Name}";
+                            AddAmount(ingredientToAdd, item, ingredientType, "ml");
+                            AddAmount(ingredientToAdd, item, ingredientType, "L");
+                            AddAmount(ingredientToAdd, item, ingredientType, "g");
+                            AddAmount(ingredientToAdd, item, ingredientType, "kg");
+                            AddAmount(ingredientToAdd, item, ingredientType);
                             await database.SaveShoppingListItemAsync(item);
 
                             added = false;
@@ -71,6 +76,55 @@ namespace CookBook.ViewModels.ShoppingList
                 {
                     await database.SaveShoppingListItemAsync(newItem);
                     ShoppingListItems.Insert(0, newItem);
+                }
+            }
+        }
+
+        private void AddAmount(string[] ingredientToAdd, ShoppingListItem item, string[] ingredientType)
+        {
+            int number1, number2;
+
+            var success = int.TryParse(ingredientType[0], out number1);
+            success = int.TryParse(ingredientToAdd[0], out number2);
+
+            if (success)
+            {
+                number1 += number2;
+
+                item.Name = $"{number1}";
+
+                for (int i = 1; i < ingredientType.Length; i++)
+                {
+                    item.Name += $" {ingredientType[i]}";
+                }
+            }
+        }
+
+        private static void AddAmount(string[] ingredientToAdd, ShoppingListItem item, string[] ingredientType, string cathegory)
+        {
+            if (ingredientType[0].Contains(cathegory) && ingredientToAdd[0].Contains(cathegory))
+            {
+                var index1 = ingredientType[0].IndexOf(cathegory);
+                var index2 = ingredientToAdd[0].IndexOf(cathegory);
+
+                var value1 = ingredientType[0].Substring(0, index1);
+                var value2 = ingredientToAdd[0].Substring(0, index2);
+
+                int number1, number2;
+
+                var success = int.TryParse(value1, out number1);
+                success = int.TryParse(value2, out number2);
+
+                if (success)
+                {
+                    number1 += number2;
+
+                    item.Name = $"{number1}{cathegory}";
+
+                    for (int i = 1; i < ingredientType.Length; i++)
+                    {
+                        item.Name += $" {ingredientType[i]}";
+                    }
                 }
             }
         }
