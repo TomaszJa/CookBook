@@ -1,10 +1,8 @@
 ﻿using CookBook.Data;
 using CookBook.Models;
 using CookBook.Services.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -43,6 +41,8 @@ namespace CookBook.ViewModels.ShoppingList
         private async void OnAddItemCommand()
         {
             var input = await _dialogService.InputDialog("Provide Shopping Item", "Add Item", "Confirm", "Cancel");
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            var added = true;
 
             if (input.Ok)
             {
@@ -51,10 +51,27 @@ namespace CookBook.ViewModels.ShoppingList
                     Name = input.Value
                 };
 
-                CookBookDatabase database = await CookBookDatabase.Instance;
-                await database.SaveShoppingListItemAsync(newItem);
+                var ingredientToAdd = newItem.Name.Split(' ');
 
-                ShoppingListItems.Add(newItem);
+                if (ingredientToAdd.Length > 1)
+                {
+                    foreach (var item in ShoppingListItems)
+                    {
+                        var ingredientType = item.Name.Split(' ');
+                        if (ingredientType.Length > 1 && ingredientType[1] == ingredientToAdd[1])
+                        {
+                            item.Name = $"{ingredientToAdd[0]}+{item.Name}";
+                            await database.SaveShoppingListItemAsync(item);
+
+                            added = false;
+                        }
+                    }
+                }
+                if (added)
+                {
+                    await database.SaveShoppingListItemAsync(newItem);
+                    ShoppingListItems.Insert(0, newItem);
+                }
             }
         }
 

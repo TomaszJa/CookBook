@@ -3,7 +3,6 @@ using CookBook.Models;
 using CookBook.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -57,7 +56,7 @@ namespace CookBook.ViewModels.Recipies
             _navigationService = navigationService;
 
             RecipeToCreate = new Recipe()
-            { 
+            {
                 Type = RecipeType.Other
             };
             AddCommand = new Command(OnAddCommand);
@@ -101,7 +100,7 @@ namespace CookBook.ViewModels.Recipies
             }
             catch
             {
-                
+
             }
         }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CookBook.ViewModels;
-using CookBook.ViewModels.Home;
+﻿using CookBook.ViewModels.Home;
 using CookBook.ViewModels.Recipies;
 using CookBook.ViewModels.ShoppingList;
 

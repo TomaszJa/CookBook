@@ -4,9 +4,7 @@ using CookBook.Utility;
 using CookBook.Views.Home;
 using CookBook.Views.Recipies;
 using CookBook.Views.ShoppingList;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace CookBook
 {

@@ -2,9 +2,6 @@
 using CookBook.Models;
 using CookBook.Services.Interfaces;
 using CookBook.Utility;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;

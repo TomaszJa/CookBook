@@ -6,7 +6,7 @@
              Style="{StaticResource PageStyle}">
     <ContentPage.Content>
         <ScrollView>
-            <Grid Margin="10" RowSpacing="10">
+            <Grid Margin="15" RowSpacing="15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>

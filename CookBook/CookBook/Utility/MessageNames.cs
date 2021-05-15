@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CookBook.Utility
+﻿namespace CookBook.Utility
 {
     public class MessageNames
     {

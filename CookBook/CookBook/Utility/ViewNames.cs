@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CookBook.Utility
+﻿namespace CookBook.Utility
 {
     // Klasa przechowująca nazwy stron, potrzebne do słownika
     // w NavigationService

@@ -1,8 +1,5 @@
 ﻿using CookBook.Models;
 using CookBook.Utility;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CookBook.ViewModels.Recipies
 {

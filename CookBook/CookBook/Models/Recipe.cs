@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SQLite;
+using System;
 using System.ComponentModel;
-using System.Text;
-using SQLite;
 
 namespace CookBook.Models
 {
@@ -17,9 +15,9 @@ namespace CookBook.Models
         private int _preparationTime;
         // Nie działa automatyczna konwersja stringa na URL
         private string _stringURL;
-        private Uri _uRL; 
+        private Uri _uRL;
 
-        public string Name 
+        public string Name
         {
             get => _name;
             set
@@ -28,7 +26,7 @@ namespace CookBook.Models
                 RaisePropertyChanged(nameof(Name));
             }
         }
-        public RecipeType Type 
+        public RecipeType Type
         {
             get => _type;
             set

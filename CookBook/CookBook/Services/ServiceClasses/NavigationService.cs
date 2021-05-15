@@ -4,7 +4,6 @@ using CookBook.Utility;
 using CookBook.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace CookBook.Services.ServiceClasses
