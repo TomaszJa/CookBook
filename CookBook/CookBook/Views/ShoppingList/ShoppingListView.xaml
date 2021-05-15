@@ -9,14 +9,24 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <ImageButton x:Name="ClearShoppingListButton"
                         Source="ClearShoppingList.png"
                         Style="{StaticResource PictureButton}"
                         Command="{Binding ClearShoppingListCommand}"
-                        Grid.Row="0" ></ImageButton>
-        <ListView HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding ShoppingListItems}"
+                        Grid.Row="0" 
+                        Grid.Column="0"></ImageButton>
+        <ImageButton x:Name="AddItemButton"
+                Source="AddItem.png"
+                Style="{StaticResource PictureButton}"
+                Command="{Binding AddItemCommand}"
+                Grid.Row="0"
+                Grid.Column="1"></ImageButton>
+        <ListView HasUnevenRows="True" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ShoppingListItems}"
                   x:Name="RecipiesList" CachingStrategy="RecycleElement" ItemTemplate="{StaticResource ItemTemplateSelector}">
             <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior
@@ -27,10 +37,5 @@
                 </behaviors:EventToCommandBehavior>
             </ListView.Behaviors>
         </ListView>
-        <ImageButton x:Name="AddItemButton"
-                Source="AddItem.png"
-                Style="{StaticResource PictureButton}"
-                Command="{Binding AddItemCommand}"
-                Grid.Row="2" ></ImageButton>
     </Grid>
 </ContentPage>

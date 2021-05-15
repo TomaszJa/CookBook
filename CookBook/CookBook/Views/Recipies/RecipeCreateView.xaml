@@ -30,23 +30,21 @@
                 <Entry Grid.Row="1"
                        Text="{Binding RecipeToCreate.Name, Mode=TwoWay}"
                        MaxLength="100"
-                       ClearButtonVisibility="WhileEditing"
-                       HorizontalTextAlignment="Center" 
-                       VerticalOptions="Center"></Entry>
+                       Style="{StaticResource EntryStyle}"></Entry>
                 <Label Text="Ingredients" 
                        Style="{StaticResource TextLabel}"
                        Grid.Row="2" ></Label>
                 <Editor Grid.Row="3"
                         Text="{Binding RecipeToCreate.Ingredients, Mode=TwoWay}"
                         AutoSize="TextChanges"
-                       VerticalOptions="Center"></Editor>
+                       Style="{StaticResource EditorStyle}"></Editor>
                 <Label Text="Description" 
                        Style="{StaticResource TextLabel}"
                        Grid.Row="4" ></Label>
                 <Editor Grid.Row="5"
                         Text="{Binding RecipeToCreate.Description, Mode=TwoWay}"
                         AutoSize="TextChanges"
-                       VerticalOptions="Center"></Editor>
+                       Style="{StaticResource EditorStyle}"></Editor>
                 <Label Text="Preparation Time (in minutes)" 
                        Style="{StaticResource TextLabel}"
                        Grid.Row="6" ></Label>

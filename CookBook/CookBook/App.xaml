@@ -34,6 +34,17 @@
                 <Setter Property="FontSize" Value="Large"></Setter>
                 <Setter Property="FontAttributes" Value="Bold"></Setter>
             </Style>
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="Keyboard" Value="Text"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+                <Setter Property="IsSpellCheckEnabled" Value="True"></Setter>
+                <Setter Property="ClearButtonVisibility" Value="WhileEditing"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+            </Style>
+            <Style x:Key="EditorStyle" TargetType="Editor">
+                <Setter Property="Keyboard" Value="Text"></Setter>
+                <Setter Property="IsSpellCheckEnabled" Value="True"></Setter>
+            </Style>
             <DataTemplate x:Key="BoughtLabel">
                 <ViewCell>
                     <Grid HeightRequest="100" Margin="5" RowSpacing="2">

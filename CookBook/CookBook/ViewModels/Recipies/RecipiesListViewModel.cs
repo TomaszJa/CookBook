@@ -70,6 +70,14 @@ namespace CookBook.ViewModels.Recipies
 
             RecipeSelectedCommand = new Command<Recipe>(OnRecipeSelectedCommand);
             SearchCommand = new Command(OnSearchCommand);
+
+            MessagingCenter.Subscribe<RecipeEditViewModel, Recipe>
+                (this, MessageNames.RecipeChangedMessage, OnRecipeChanged);
+        }
+
+        private void OnRecipeChanged(RecipeEditViewModel sender, Recipe recipe)
+        {
+            Recipies.Remove(recipe);
         }
 
         private async void OnSearchCommand()

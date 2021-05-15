@@ -39,14 +39,14 @@
                 <Editor Grid.Row="3"
                         Text="{Binding RecipeToEdit.Ingredients, Mode=TwoWay}"
                         AutoSize="TextChanges"
-                       VerticalOptions="Center"></Editor>
+                       Style="{StaticResource EditorStyle}"></Editor>
                 <Label Text="Description" 
                        Style="{StaticResource TextLabel}"
                        Grid.Row="4" ></Label>
                 <Editor Grid.Row="5"
                         Text="{Binding RecipeToEdit.Description, Mode=TwoWay}"
                         AutoSize="TextChanges"
-                       VerticalOptions="Center"></Editor>
+                       Style="{StaticResource EditorStyle}"></Editor>
                 <Label Text="Preparation Time (in minutes)" 
                        Style="{StaticResource TextLabel}"
                        Grid.Row="6" ></Label>
