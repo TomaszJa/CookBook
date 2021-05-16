@@ -33,8 +33,15 @@ namespace CookBook.ViewModels.Home
             _navigationService.NavigateTo(ViewNames.ShoppingListView, items, null);
         }
 
-        private void OnBrowseRecipiesCommand()
+        private async void OnBrowseRecipiesCommand()
         {
+            CookBookDatabase database = await CookBookDatabase.Instance;
+            List<Recipe> items = await database.GetRecipiesAsync();
+            if (items.Count == 0)
+            {
+                await database.AddBaseRecipiesAsync();
+            }
+
             _navigationService.NavigateTo(ViewNames.RecipiesCathegoryView);
         }
 

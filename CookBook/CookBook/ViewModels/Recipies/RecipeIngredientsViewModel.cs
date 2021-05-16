@@ -1,6 +1,7 @@
 ﻿using CookBook.Data;
 using CookBook.Models;
 using CookBook.Services.Interfaces;
+using CookBook.Utility;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -75,9 +76,9 @@ namespace CookBook.ViewModels.Recipies
                             var substring2 = item.Name.Substring(index2+1);
 
 
-                            if (substring1 == substring2)
+                            if (substring1.ToLower() == substring2.ToLower())
                             {
-                                item.Name = $"{ingredientToAdd[0]}+{item.Name}";
+                                item.Name = AddAmount(item.Name);
                                 AddAmount(ingredientToAdd, item, ingredientType, "ml", substring2);
                                 AddAmount(ingredientToAdd, item, ingredientType, "L", substring2);
                                 AddAmount(ingredientToAdd, item, ingredientType, "g", substring2);
@@ -85,6 +86,7 @@ namespace CookBook.ViewModels.Recipies
                                 var success = AddAmount(ingredientToAdd, item, ingredientType, substring2);
 
                                 added = false;
+
                                 if (shoppingListItem.Name == item.Name && !success)
                                 {
                                     added = true;
@@ -106,14 +108,40 @@ namespace CookBook.ViewModels.Recipies
             await _dialogService.ShowDialog("Ingredients added to shopping list!", "Success", "Ok");
         }
 
+        private string AddAmount(string name)
+        {
+            if (name.Contains("x"))
+            {
+                var index1 = name.IndexOf('x');
+
+                var value1 = name.Substring(0, index1);
+                var value2 = name.Substring(index1 + 1);
+
+                double number1;
+
+                var success1 = double.TryParse(value1, out number1);
+
+                if (success1)
+                {
+                    name = $"{number1+1}x{value2}";
+                    return name;
+                }
+            }
+            else
+            {
+                name = "2x" + name;
+            }
+            return name;
+        }
+
         private bool AddAmount(string[] ingredientToAdd, ShoppingListItem item, string[] ingredientType, string fullName)
         {
-            int number1, number2;
+            double number1, number2;
 
-            var success = int.TryParse(ingredientType[0], out number1);
-            success = int.TryParse(ingredientToAdd[0], out number2);
+            var success1 = double.TryParse(ingredientType[0], out number1);
+            var success2 = double.TryParse(ingredientToAdd[0], out number2);
 
-            if (success)
+            if (success1 && success2)
             {
                 number1 += number2;
 
@@ -126,6 +154,9 @@ namespace CookBook.ViewModels.Recipies
 
         private static void AddAmount(string[] ingredientToAdd, ShoppingListItem item, string[] ingredientType, string cathegory, string fullName)
         {
+            ingredientToAdd = ChangeValue.ChangeToGrams(ingredientToAdd, item, ingredientType, fullName);
+            ingredientToAdd = ChangeValue.ChangeToMililiters(ingredientToAdd, item, ingredientType, fullName);
+
             if (ingredientType[0].Contains(cathegory) && ingredientToAdd[0].Contains(cathegory))
             {
                 var index1 = ingredientType[0].IndexOf(cathegory);
@@ -134,10 +165,10 @@ namespace CookBook.ViewModels.Recipies
                 var value1 = ingredientType[0].Substring(0, index1);
                 var value2 = ingredientToAdd[0].Substring(0, index2);
 
-                int number1, number2;
+                double number1, number2;
 
-                var success1 = int.TryParse(value1, out number1);
-                var success2 = int.TryParse(value2, out number2);
+                var success1 = double.TryParse(value1, out number1);
+                var success2 = double.TryParse(value2, out number2);
 
                 if (success1 && success2)
                 {
