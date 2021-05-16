@@ -30,9 +30,7 @@
                 <Entry Grid.Row="1"
                        Text="{Binding RecipeToEdit.Name, Mode=TwoWay}"
                        MaxLength="100"
-                       ClearButtonVisibility="WhileEditing"
-                       HorizontalTextAlignment="Center" 
-                       VerticalOptions="Center"></Entry>
+                       Style="{StaticResource EntryStyle}"></Entry>
                 <Label Text="Ingredients"
                        Style="{StaticResource TextLabel}"
                        Grid.Row="2" ></Label>
@@ -55,7 +53,8 @@
                         Placeholder="time in minutes"
                         MaxLength="3"
                         ClearButtonVisibility="WhileEditing"
-                        Keyboard="Numeric"></Entry>
+                        Keyboard="Numeric"
+                       TextColor="AntiqueWhite"></Entry>
                 <Label Text="Link to Recipe" 
                        Style="{StaticResource TextLabel}"
                        Grid.Row="8" ></Label>
@@ -63,13 +62,16 @@
                        Text="{Binding RecipeToEdit.StringURL, Mode=TwoWay}"
                        ClearButtonVisibility="WhileEditing"
                        HorizontalTextAlignment="Center" 
-                       VerticalOptions="Center"></Entry>
+                       VerticalOptions="Center"
+                       TextColor="AntiqueWhite"></Entry>
                 <Label Text="Type" 
+                       Style="{StaticResource TextLabel}"
                        Grid.Row="10" ></Label>
                 <Picker Grid.Row="11"
                        Title="{Binding RecipeToEdit.Type}"
                         ItemsSource="{Binding Types}"
                         SelectedItem="{Binding ChosenValue, Mode=TwoWay}"
+                        TitleColor="AntiqueWhite"
                        HorizontalTextAlignment="Center" 
                        VerticalOptions="Center"></Picker>
                 <ImageButton x:Name="SaveRecipeButton"

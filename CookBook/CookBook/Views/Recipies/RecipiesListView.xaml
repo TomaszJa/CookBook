@@ -22,6 +22,7 @@
                         Grid.Column="0"
                         Text="{Binding SearchQuery, Mode=TwoWay}"
                         Placeholder="Search by Name"
+                        PlaceholderColor="LightGray"
                         MaxLength="100"
                         ClearButtonVisibility="WhileEditing"></Entry>
             <ImageButton x:Name="SearchButton"

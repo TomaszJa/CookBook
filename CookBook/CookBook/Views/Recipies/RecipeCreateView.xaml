@@ -53,7 +53,8 @@
                         Placeholder="time in minutes"
                         MaxLength="3"
                         ClearButtonVisibility="WhileEditing"
-                        Keyboard="Numeric"></Entry>
+                        Keyboard="Numeric"
+                       TextColor="AntiqueWhite"></Entry>
                 <Label Text="Link to Recipe" 
                        Style="{StaticResource TextLabel}"
                        Grid.Row="8" ></Label>
@@ -61,7 +62,8 @@
                        Text="{Binding RecipeToCreate.StringURL, Mode=TwoWay}"
                        ClearButtonVisibility="WhileEditing"
                        HorizontalTextAlignment="Center" 
-                       VerticalOptions="Center"></Entry>
+                       VerticalOptions="Center"
+                       TextColor="AntiqueWhite"></Entry>
                 <Label Text="Type" 
                        Style="{StaticResource TextLabel}"
                        Grid.Row="10" ></Label>
@@ -69,6 +71,7 @@
                        Title="{Binding RecipeToCreate.Type}"
                         ItemsSource="{Binding Types}"
                         SelectedItem="{Binding ChosenValue, Mode=TwoWay}"
+                        TitleColor="AntiqueWhite"
                        HorizontalTextAlignment="Center" 
                        VerticalOptions="Center"></Picker>
                 <ImageButton x:Name="AddRecipeButton"

@@ -35,6 +35,7 @@
                 <Setter Property="FontAttributes" Value="Bold"></Setter>
             </Style>
             <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="AntiqueWhite"></Setter>
                 <Setter Property="Keyboard" Value="Text"></Setter>
                 <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
                 <Setter Property="IsSpellCheckEnabled" Value="True"></Setter>
@@ -42,6 +43,7 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
             </Style>
             <Style x:Key="EditorStyle" TargetType="Editor">
+                <Setter Property="TextColor" Value="AntiqueWhite"></Setter>
                 <Setter Property="Keyboard" Value="Text"></Setter>
                 <Setter Property="IsSpellCheckEnabled" Value="True"></Setter>
             </Style>
