@@ -38,7 +38,7 @@ namespace CookBook.Data
 
         public Task<List<Recipe>> GetRecipiesByNameAsync(string name, RecipeType type)
         {
-            return Database.Table<Recipe>().Where(n => n.Name.Contains(name) && n.Type == type).ToListAsync();
+            return Database.Table<Recipe>().Where(n => n.Name.ToLower().Contains(name.ToLower()) && n.Type == type).ToListAsync();
         }
         public Task<List<Recipe>> GetRecipiesAsync()
         {
@@ -102,7 +102,7 @@ namespace CookBook.Data
             var breakfastItem = new Recipe
             {
                 Name = "Naleśniki",
-                Ingredients = "100ml Mleka\n100g Mąki\n1 Jajko\nSzczypta soli\n2 Łyżki Oliwy\nDżem lub serek waniliowy",
+                Ingredients = "100ml Mleka\n100g Mąki\n1 Jajko\n0,5 łyżeczki soli\n2 Łyżki Oliwy\nDżem lub serek waniliowy",
                 Description = "Roztrzep jajko w rondelku, a następnie dodaj resztę składników i zmiksuj je na gładkie, lekko płynne ciasto.\n\n" +
                 "Naleśniki smaż na rozgrzanej patelni na dużym płomieniu na oliwie.\n\nUsmażone naleśniki podawaj z dżemem lub serkiem waniliowym",
                 PreparationTime = 15,
@@ -114,8 +114,12 @@ namespace CookBook.Data
             var starterItem = new Recipe
             {
                 Name = "Grzanki z chleba tostowego",
-                Ingredients = "6 kromek chleba tostowego\n60 g masła\n2 ząbki czosnku\n2 łyżki siekanego szczypiorku" +
-                "\n1 łyżka ziół prowansalskich lub świeżych\n0,5 łyżeczki soli\n" +
+                Ingredients = "6 kromek chleba tostowego\n" +
+                "60g masła\n" +
+                "2 ząbki czosnku\n" +
+                "2 łyżki siekanego szczypiorku" +
+                "\n1 łyżka ziół prowansalskich lub świeżych\n" +
+                "0,5 łyżeczki soli\n" +
                 "0,5 łyżeczki słodkiej papryki",
                 Description = "Przygotuj sobie 6 kromek dowolnego pieczywa tostowego." +
                 " Te bez ziaren będzie się łatwiej wałkowało i kroiło w trójkąty. Każdą kromkę połóż na desce i rozwałkuj na cienki placek chlebowy.\n\n" +
@@ -257,7 +261,7 @@ namespace CookBook.Data
             var otherItem = new Recipe
             {
                 Name = "Sos czosnkowy",
-                Ingredients = "2 ząbki czosnku\n0,5 szklanki jogurtu naturalnego\n4 łyżki majonezu\nszczypta soli\nszczypta pieprzu",
+                Ingredients = "2 ząbki czosnku\n0,5 szklanki jogurtu naturalnego\n4 łyżki majonezu\n0,25 łyżeczki soli\nszczypta pieprzu",
                 Description = "Świeże ząbki czosnku obierz i przeciśnij przez praskę. Do sosu czosnkowego nigdy nie używam czosnku suszonego.\n\n" +
                 "Do miseczki z czosnkiem dodaj pół szklanki jogurtu naturalnego. Będzie to około sześć łyżek. Wybieram delikatny, kremowy i nie za kwaśny jogurt np." +
                 " Piątnica. Dodaj również sól i zamieszaj całość. Prawie gotowy sos odstaw na kilka minut. Następnie dodaj cztery łyżki dobrej jakości majonezu. " +
