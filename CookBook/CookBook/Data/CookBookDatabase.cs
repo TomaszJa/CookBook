@@ -211,7 +211,7 @@ namespace CookBook.Data
                 "20 plasterków Salami\n" +
                 "250g Mozzarelli\n" +
                 "0,5 Puszki kukurydzy\n" +
-                "0,5 Słoika kukurydzy\n" +
+                "0,5 Słoika oliwek\n" +
                 "0,5 Papryki\n" +
                 "0,5 cebuli\n" +
                 "Mieszanka ziół do pizzy",
