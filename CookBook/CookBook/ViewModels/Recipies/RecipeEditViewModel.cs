@@ -91,6 +91,12 @@ namespace CookBook.ViewModels.Recipies
                     MessagingCenter.Send(this, MessageNames.RecipeChangedMessage, RecipeToEdit);
                     _navigationService.GoBack();
                 }
+                else
+                {
+                    await _dialogService.ShowDialog("You should specify Name, Ingredients and Description", "Wrong input", "Ok");
+                    CookBookDatabase database = await CookBookDatabase.Instance;
+                    RecipeToEdit = await database.GetRecipeByIdAsync(RecipeToEdit.ID);
+                }
             }
             catch
             {

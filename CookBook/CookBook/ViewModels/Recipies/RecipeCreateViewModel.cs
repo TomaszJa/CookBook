@@ -97,6 +97,10 @@ namespace CookBook.ViewModels.Recipies
                     };
                     _navigationService.GoBack();
                 }
+                else
+                {
+                    await _dialogService.ShowDialog("You should specify Name, Ingredients and Description", "Wrong input", "Ok");
+                }
             }
             catch
             {
